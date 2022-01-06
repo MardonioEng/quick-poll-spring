@@ -7,15 +7,15 @@ import java.util.Set;
 public class Poll {
 
     @Id
-    @GeneratedValue
-    @Column(name = "POLL_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "QUESTION")
+    @Column(name = "question")
     private String question;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "OPTION_ID")
+    @JoinColumn(name = "option_id")
     @OrderBy
     private Set<Option> options;
 
