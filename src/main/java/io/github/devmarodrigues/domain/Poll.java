@@ -8,14 +8,14 @@ public class Poll {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "poll_id")
     private Long id;
 
     @Column(name = "question")
     private String question;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "option_id")
+    @JoinColumn(name = "poll_id")
     @OrderBy
     private Set<Option> options;
 
