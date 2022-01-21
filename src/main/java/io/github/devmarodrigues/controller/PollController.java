@@ -1,6 +1,7 @@
 package io.github.devmarodrigues.controller;
 
 import io.github.devmarodrigues.domain.Poll;
+import io.github.devmarodrigues.exception.ResourceNotFoundException;
 import io.github.devmarodrigues.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -42,25 +43,30 @@ public class PollController {
     }
 
     @GetMapping("/{pollId}")
-    public ResponseEntity<?> getPoll(@PathVariable Long pollId) throws Exception {
-        Optional<Poll> poll = pollRepository.findById(pollId);
-        if(!poll.isPresent()) {
-            throw new Exception("Pool not found");
-        }
-        return new ResponseEntity<>(poll.get(), HttpStatus.OK);
+    public ResponseEntity<?> getPoll(@PathVariable Long pollId) {
+        return new ResponseEntity<>(verifyPoll(pollId), HttpStatus.OK);
     }
 
     @PutMapping("/{pollId}")
-    public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable
-            Long pollId) {
-        // Save the entity
-        Poll newPoll = pollRepository.save(poll);
+    public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long pollId) {
+        verifyPoll(pollId);
+        pollRepository.save(poll);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @DeleteMapping("/{pollId}")
     public ResponseEntity<?> deletePoll(@PathVariable Long pollId) {
+        verifyPoll(pollId);
         pollRepository.deleteById(pollId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    protected Poll verifyPoll(Long pollId) throws ResourceNotFoundException {
+        Optional<Poll> poll = pollRepository.findById(pollId);
+        if(!poll.isPresent()) {
+            throw new ResourceNotFoundException("Poll with id " + pollId + " not found.");
+        }
+        return poll.get();
     }
 
 }
