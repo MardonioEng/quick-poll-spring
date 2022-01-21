@@ -1,6 +1,9 @@
 package io.github.devmarodrigues.dto.error;
 
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ErrorDetail {
 
@@ -8,16 +11,20 @@ public class ErrorDetail {
     private int status;
     private String detail;
     private Instant timeStamp;
+    private String path;
     private String developerMessage;
+
+    private Map<String, List<ValidationError>> errors = new HashMap<String, List<ValidationError>>();
 
     public ErrorDetail() {
     }
 
-    public ErrorDetail(String title, int status, String detail, Instant timeStamp, String developerMessage) {
+    public ErrorDetail(String title, int status, String detail, Instant timeStamp, String path, String developerMessage) {
         this.title = title;
         this.status = status;
         this.detail = detail;
         this.timeStamp = timeStamp;
+        this.path = path;
         this.developerMessage = developerMessage;
     }
 
@@ -59,5 +66,21 @@ public class ErrorDetail {
 
     public void setDeveloperMessage(String developerMessage) {
         this.developerMessage = developerMessage;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Map<String, List<ValidationError>> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(Map<String, List<ValidationError>> errors) {
+        this.errors = errors;
     }
 }
