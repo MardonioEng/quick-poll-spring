@@ -17,7 +17,7 @@ public class Poll {
     @NotEmpty
     private String question;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name = "poll_id")
     @OrderBy
     @Size(min = 2, max = 6)
