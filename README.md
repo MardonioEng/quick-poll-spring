@@ -18,7 +18,7 @@
 
 :white_check_mark: Chapter 4: Beginning QuickPoll Application
 
-:white_large_square: Chapter 5: Error Handling
+:white_check_mark: Chapter 5: Error Handling
 
 :white_large_square: Chapter 6: Documenting REST Services
 
