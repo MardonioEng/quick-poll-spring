@@ -20,7 +20,7 @@
 
 :white_check_mark: Chapter 5: Error Handling
 
-:white_large_square: Chapter 6: Documenting REST Services
+:white_check_mark: Chapter 6: Documenting REST Services
 
 :white_large_square: Chapter 7: Versioning, Paging, and Sorting
 
