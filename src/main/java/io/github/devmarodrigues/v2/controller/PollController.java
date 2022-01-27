@@ -1,4 +1,4 @@
-package io.github.devmarodrigues.controller;
+package io.github.devmarodrigues.v2.controller;
 
 import io.github.devmarodrigues.domain.Poll;
 import io.github.devmarodrigues.exception.ResourceNotFoundException;
@@ -15,7 +15,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/polls")
+@RequestMapping("/v2/polls")
 public class PollController {
 
     @Autowired

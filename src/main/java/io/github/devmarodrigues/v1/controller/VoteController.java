@@ -1,4 +1,4 @@
-package io.github.devmarodrigues.controller;
+package io.github.devmarodrigues.v1.controller;
 
 import io.github.devmarodrigues.domain.Vote;
 import io.github.devmarodrigues.repository.VoteRepository;
@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@RequestMapping("/v1/polls")
 public class VoteController {
 
     @Autowired
     private VoteRepository voteRepository;
 
-    @PostMapping("/polls/{pollId}/votes")
+    @PostMapping("/{pollId}/votes")
     public ResponseEntity<?> createVote(@PathVariable Long pollId, @RequestBody Vote vote) {
         vote = voteRepository.save(vote);
 
@@ -30,7 +31,7 @@ public class VoteController {
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
-    @GetMapping("/polls/{pollId}/votes")
+    @GetMapping("/{pollId}/votes")
     public Iterable<Vote> getAllVotes(@PathVariable Long pollId) {
         return voteRepository.findByPoll(pollId);
     }
