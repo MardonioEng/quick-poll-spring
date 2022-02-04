@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/v2/polls")
-public class PollController {
+public class PollControllerV2 {
 
     @Autowired
     private PollRepository pollRepository;

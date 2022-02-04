@@ -11,7 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/v2/polls")
-public class VoteController {
+public class VoteControllerV2 {
 
     @Autowired
     private VoteRepository voteRepository;
